@@ -32,18 +32,34 @@ export const usePlayerStore = create<playerState>((set, get) => ({
   volume: 100,
 
   setPlayList(playList) {},
-  play() {},
+  play(index) {
+    console.log('play', index);
+    set({ isPlaying: true, currentIndex: index });
+  },
   pause() {
+    console.log('pause');
     set({ isPlaying: false });
   },
   resume() {
     set({ isPlaying: true });
   },
-  next() {},
 
-  prev() {},
+  //playlist = [track1,track2,track3]
+  //track1 currentIndex= [0]
+  //then nextIndex = currentIndex + 1
+  next() {
+    const { currentIndex, playList } = get();
+    const nextIndex = (currentIndex + 1) % playList.length;
+    set({ currentIndex: nextIndex, isPlaying: true });
+  },
 
-  setVolume(v): number {
-    return v;
+  prev() {
+    const { currentIndex, playList } = get();
+    const prevIndex = (currentIndex - 1 + playList.length) % playList.length;
+    set({ currentIndex: prevIndex, isPlaying: true });
+  },
+
+  setVolume(v) {
+    set({ volume: v });
   },
 }));
