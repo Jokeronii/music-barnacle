@@ -1,5 +1,6 @@
 import { Table, TableBody, TableCaption, TableCell, TableHead, TableHeader, TableRow } from '@/components/ui/table';
 import { tracks } from '@/server/tracks';
+import PlayerButton from './PlayerButton';
 
 export default function TrackList() {
   const data = tracks;
@@ -15,6 +16,7 @@ export default function TrackList() {
             <TableHead>Artist</TableHead>
             <TableHead className="text-right">Src</TableHead>
             <TableHead className="text-right">Cover</TableHead>
+            <TableHead className="text-right">action</TableHead>
           </TableRow>
         </TableHeader>
         <TableBody>
@@ -25,6 +27,10 @@ export default function TrackList() {
               <TableCell>{track.artist}</TableCell>
               <TableCell className="text-right">{track.src}</TableCell>
               <TableCell className="text-right">{track.cover}</TableCell>
+              {/* player action {play pause etc} */}
+              <TableCell className="text-right">
+                <PlayerButton />
+              </TableCell>
             </TableRow>
           ))}
         </TableBody>

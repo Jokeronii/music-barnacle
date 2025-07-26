@@ -17,7 +17,7 @@ type playerState = {
   //methods
   setPlayList: (playList: Track[]) => void;
 
-  play: (index: number) => void;
+  play: () => void;
   pause: () => void;
   resume: () => void;
   next: () => void;
@@ -32,9 +32,9 @@ export const usePlayerStore = create<playerState>((set, get) => ({
   volume: 100,
 
   setPlayList(playList) {},
-  play(index) {
-    console.log('play', index);
-    set({ isPlaying: true, currentIndex: index });
+  play() {
+    // console.log('play', index);
+    set({ isPlaying: true });
   },
   pause() {
     console.log('pause');
